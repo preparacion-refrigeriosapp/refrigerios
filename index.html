@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#00A99D">
+<title>Cómo preparar refrigerios</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Refrigerios">
+<script src="config.js"></script>
+<script>
+// Carga Google Analytics solo si config.js tiene un código de medición.
+(function(){var id=(window.RF_CONFIG||{}).gaId; if(!id) return;
+  var s=document.createElement("script"); s.async=true; s.src="https://www.googletagmanager.com/gtag/js?id="+id; document.head.appendChild(s);
+  window.dataLayer=window.dataLayer||[]; window.gtag=function(){dataLayer.push(arguments);};
+  gtag("js",new Date()); gtag("config",id,{anonymize_ip:true});})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Manual de marca SABER NUTRIR 2024: Asap + sistema cromático. Una columna para celular, tramas de franjas de color. */
+  --teal:#00A99D; --teal-2:#30BCB1; --gray:#A7A9AC; --gray-2:#939598;
+  --purple:#94699E; --coral:#F15D60; --pink:#EF5080; --orange:#FAA21B;
+  --bg:#f4f5f5; --surface:#ffffff; --ink:#3c4043; --muted:#6d6f72; --line:#e1e3e4;
+  --teal-soft:#e2f4f2; --orange-soft:#fff3e0;
+  --font:"Asap","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:17px/1.45 var(--font)}
+.stripes{height:8px;background:linear-gradient(90deg,var(--coral) 0 14.28%,var(--orange) 0 28.57%,var(--teal) 0 42.85%,var(--pink) 0 57.14%,var(--purple) 0 71.42%,var(--teal-2) 0 85.71%,var(--gray) 0)}
+.top{background:var(--surface)}
+.brand{max-width:560px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:14px 16px 10px}
+.brand img{display:block;height:auto}
+.brand .sn{width:170px}
+.brand .tkf{width:92px}
+.hero{max-width:560px;margin:0 auto;padding:0 16px 16px;display:grid;gap:6px}
+.hero img{width:100%;height:auto;display:block}
+.hero h1{text-wrap:balance;font:800 28px/1.1 var(--font);margin:0;color:var(--teal);text-transform:uppercase;letter-spacing:.01em}
+.hero p{margin:0;color:var(--muted);font-size:16px}
+.wrap{max-width:560px;margin:0 auto;padding:16px 16px 40px;display:grid;gap:16px}
+section.card{background:var(--surface);border-radius:14px;padding:16px;display:grid;gap:12px;min-width:0;border-top:6px solid var(--c,var(--teal))}
+.step{display:flex;align-items:center;gap:10px}
+.step b{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--c,var(--teal));color:#fff;font:800 16px var(--font);flex:none}
+.step h2{font:700 19px/1.2 var(--font);margin:0;text-transform:uppercase;letter-spacing:.02em}
+.sub{font-size:14px;color:var(--muted);margin:0}
+.c1{--c:var(--teal)}.c2{--c:var(--orange)}.c3{--c:var(--pink)}.c4{--c:var(--purple)}.c5{--c:var(--coral)}.c6{--c:var(--teal-2)}
+.today{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:var(--surface);border-radius:14px;padding:12px;border-left:6px solid var(--purple)}
+.today .day{background:var(--purple);color:#fff;border-radius:8px;padding:8px 10px;font:700 14px var(--font);text-transform:uppercase;letter-spacing:.04em}
+.today .what{font-weight:600;line-height:1.25}
+.today .what small{display:block;font-weight:400;color:var(--muted);font-size:13px}
+.today button{border:0;background:var(--purple);color:#fff;border-radius:8px;padding:10px 14px;font:700 15px var(--font);cursor:pointer}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{appearance:none;border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:12px 10px;text-align:left;font:700 16px/1.2 var(--font);cursor:pointer;display:grid;gap:3px;min-height:64px}
+.opt small{font-weight:400;color:var(--muted);font-size:13px}
+.opt[aria-pressed="true"]{border-color:var(--c);background:color-mix(in srgb,var(--c) 12%,#fff)}
+.opt:focus-visible,button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--purple);outline-offset:2px}
+.flavor{display:grid;gap:6px}
+.flavor .lbl{font-size:13px;color:var(--muted)}
+.counter{display:grid;grid-template-columns:56px 1fr 56px;gap:8px;align-items:stretch}
+.counter button{border:0;border-radius:10px;background:color-mix(in srgb,var(--c) 15%,#fff);color:var(--c);font:800 30px var(--font);cursor:pointer}
+.counter input::-webkit-inner-spin-button,.counter input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.counter input{-moz-appearance:textfield;width:100%;text-align:center;font:800 42px var(--font);color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:10px;padding:4px 0;font-variant-numeric:tabular-nums}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:6px 12px;font:600 14px var(--font);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--c,var(--teal));color:#fff;border-color:var(--c,var(--teal))}
+.result-head{background:var(--teal);color:#fff;border-radius:14px;padding:16px;display:grid;gap:6px;position:relative;overflow:hidden}
+.result-head::after{content:"";position:absolute;right:0;top:0;bottom:0;width:36px;background:linear-gradient(90deg,var(--orange) 0 25%,var(--pink) 0 50%,var(--purple) 0 75%,var(--coral) 0)}
+.result-head > *{padding-right:44px}
+.result-head .k{font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.9;font-weight:600}
+.result-head .v{font:800 22px/1.2 var(--font);text-wrap:balance}
+.result-head .y{font-size:15px}
+.pick{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.pick li{display:grid;grid-template-columns:72px 1fr auto;grid-template-areas:"img name qty" "img det det";column-gap:12px;row-gap:4px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:8px 10px 8px 8px}
+.pick img{grid-area:img;width:72px;height:72px;object-fit:contain;display:block;align-self:start}
+.pick li > div:not(.qty){display:contents}
+.pick .name{grid-area:name}.pick .det{grid-area:det}.pick .qty{grid-area:qty}
+.qty{background:var(--c);color:#fff;border-radius:10px;text-align:center;padding:6px 8px;min-width:62px;font:800 28px/1 var(--font);font-variant-numeric:tabular-nums}
+.qty small{display:block;font:700 10px var(--font);letter-spacing:.04em;text-transform:uppercase;margin-top:3px}
+.pick .name{font-weight:700;line-height:1.2}
+.pick .det{color:var(--muted);font-size:14px;line-height:1.3;margin-top:2px}
+.water{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;background:color-mix(in srgb,var(--c) 12%,#fff);border-radius:10px;padding:12px}
+.water .big{font:800 34px/1 var(--font);color:var(--c);font-variant-numeric:tabular-nums}
+.water .how{font-weight:700}
+.water .how span{display:block;font-weight:400;font-size:14px;color:var(--muted)}
+ol.steps{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+ol.steps li{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start}
+ol.steps input{width:22px;height:22px;margin:2px 0 0;accent-color:var(--coral)}
+ol.steps label{cursor:pointer}
+ol.steps input:checked + label{color:var(--muted);text-decoration:line-through}
+.note{border-left:5px solid var(--orange);background:var(--orange-soft);border-radius:8px;padding:10px 12px;font-size:15px}
+.note:empty{display:none}
+.tip{border-left:5px solid var(--teal);background:var(--teal-soft);border-radius:8px;padding:10px 12px;font-size:15px}
+.serve{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.serve > div{border:1px solid var(--line);border-radius:10px;padding:10px}
+.serve .k{font-size:13px;color:var(--muted)}
+.serve .v{font-weight:700}
+.share{display:grid;grid-template-columns:2fr 1fr;gap:8px}
+.secondary{border:2px solid var(--teal);background:var(--surface);color:var(--teal);border-radius:10px;padding:12px;font:700 15px var(--font);cursor:pointer}
+.primary{display:block;text-align:center;text-decoration:none;border:0;background:var(--teal);color:#fff;border-radius:10px;padding:14px;font:700 17px var(--font);cursor:pointer;width:100%}
+.ok{font-size:14px;color:var(--teal);text-align:center;min-height:1.2em}
+footer{color:var(--muted);font-size:13px;text-align:center;display:grid;gap:4px}
+@media (max-width:360px){.opts{grid-template-columns:1fr}.today{grid-template-columns:1fr}.pick li{grid-template-columns:56px 1fr auto}.pick img{width:56px;height:56px}}
+@media (prefers-reduced-motion:no-preference){.opt,.chip{transition:background .15s,border-color .15s}}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="stripes"></div>
+  <div class="brand"><img class="sn" src="img/logo-saber-nutrir.png" alt="SABER NUTRIR, Programa Modular de Capacitación"><img class="tkf" src="img/logo-teknofood.png" alt="Teknofood"></div>
+  <div class="hero">
+    <img src="img/refrigerios.jpg" alt="Refrigerios: bases lácteas, budines, galletitas, cereales y frutas" width="1000" height="534">
+    <h1>Cómo preparar refrigerios</h1>
+    <p>Elegí el menú, poné cuántos chicos comen hoy y te decimos qué sacar del depósito y cómo prepararlo.</p>
+  </div>
+</div>
+<div class="wrap">
+
+  <div class="today" id="today"></div>
+
+  <section class="card c1" aria-labelledby="h1s">
+    <div class="step"><b>1</b><h2 id="h1s">Base láctea</h2></div>
+    <div class="opts" id="bases"></div>
+    <div class="flavor" id="baseFlavorWrap"><span class="lbl">Sabor (opcional)</span><div class="chips" id="baseFlavor"></div></div>
+  </section>
+
+  <section class="card c2" aria-labelledby="h2s">
+    <div class="step"><b>2</b><h2 id="h2s">Acompañamiento</h2></div>
+    <div class="opts" id="acomps"></div>
+    <div class="flavor"><span class="lbl">Variedad (opcional)</span><div class="chips" id="acompFlavor"></div></div>
+  </section>
+
+  <section class="card c3" aria-labelledby="h3s">
+    <div class="step"><b>3</b><h2 id="h3s">¿Cuántos comensales hoy?</h2></div>
+    <div class="counter">
+      <button type="button" id="minus" aria-label="Restar uno">−</button>
+      <input id="n" type="number" inputmode="numeric" min="1" max="2000" value="50" aria-label="Cantidad de comensales">
+      <button type="button" id="plus" aria-label="Sumar uno">+</button>
+    </div>
+    <div class="chips" id="quick" aria-label="Cantidades rápidas"></div>
+  </section>
+
+  <div class="result-head" aria-live="polite">
+    <span class="k">Menú de hoy</span>
+    <span class="v" id="summary"></span>
+    <span class="y" id="yield"></span>
+  </div>
+
+  <section class="card c4" aria-labelledby="h4s">
+    <div class="step"><b>4</b><h2 id="h4s">Retirar del depósito</h2></div>
+    <ul class="pick" id="pick"></ul>
+    <p class="sub">¿Cómo medís lo que usás de un envase abierto?</p>
+    <div class="chips" id="mode" aria-label="Cómo medís"></div>
+  </section>
+
+  <section class="card c5" aria-labelledby="h5s">
+    <div class="step"><b>5</b><h2 id="h5s">Preparar la base</h2></div>
+    <div class="chips" id="jarra" aria-label="Tamaño de jarra"></div>
+    <div class="water" id="water"></div>
+    <ol class="steps" id="steps"></ol>
+    <div class="tip" id="tanda"></div>
+    <div class="note" id="note"></div>
+  </section>
+
+  <section class="card c6" aria-labelledby="h6s">
+    <div class="step"><b>6</b><h2 id="h6s">Servir</h2></div>
+    <p class="sub">Porción sugerida por beneficiario:</p>
+    <div class="serve" id="serve"></div>
+    <p class="sub">También podés sumar frutas y agua al refrigerio.</p>
+  </section>
+
+  <div class="share">
+    <a class="primary" id="wa" href="#" target="_blank" rel="noopener">Enviar pedido por WhatsApp</a>
+    <button class="secondary" id="copy" type="button">Copiar pedido</button>
+  </div>
+  <div class="ok" id="ok" role="status"></div>
+  <footer>
+    <span>SABER NUTRIR · Cantidades y modo de preparación según las fichas técnicas Abanderado 2026.</span>
+    <span>Versión 1.0 de prueba</span>
+  </footer>
+</div>
+
+<script>
+// ---------- Datos de las fichas técnicas Abanderado 2026 ----------
+const PHOTO = {leche:"leche",choco:"chocolatada",yerba:"yerba",azucar:"azucar",
+  sabor:{"":"sab-vainilla","Vainilla":"sab-vainilla","Chocolate":"sab-chocolate","Flan":"sab-flan","Malta":"sab-malta"},
+  arroz:{"":"arroz-tradicional","Tradicional":"arroz-tradicional","Caramelo":"arroz-caramelo"},
+  galletitas:{"":"gal-letritas-vainilla","Letritas vainilla":"gal-letritas-vainilla","Letritas chocolate":"gal-letritas-chocolate","Frutitas durazno":"gal-frutitas-durazno","Frutitas naranja":"gal-frutitas-naranja","Semillitas avena y miel":"gal-semillitas"},
+  cereales:{"":"cer-anillitos-miel","Anillitos con miel":"cer-anillitos-miel","Anillitos sabor fruta":"cer-anillitos-fruta","Bolitas de chocolate":"cer-bolitas","Copitas con chocolate":"cer-copitas"},
+  budin:{"":"budin-vainilla","Vainilla":"budin-vainilla","Naranja":"budin-naranja","Dulce de leche":"budin-ddl","Mixto":"budin-mixto"}};
+const photo=(id,flavor)=>{const p=PHOTO[id]; return "img/"+(typeof p==="string"?p:(p[flavor]||p[""]))+".jpg";};
+const ING = {
+  leche:  {name:"Leche entera en polvo", pkg:800,  rinde:32, unit:["envase","envases"], spoonG:10, spoon:"cucharadas soperas colmadas"},
+  sabor:  {name:"Saborizante", pkg:640, rinde:32, unit:["envase","envases"], spoonG:20/1.5, spoon:"cucharadas soperas colmadas"},
+  choco:  {name:"Chocolatada", pkg:720, rinde:16, unit:["envase","envases"], spoonG:15, spoon:"cucharadas soperas colmadas"},
+  yerba:  {name:"Yerba mate", pkg:64, rinde:32, unit:["envase","envases"], spoonG:2, spoon:"cucharaditas de té colmadas"},
+  azucar: {name:"Azúcar", pkg:1000, unit:["paquete","paquetes"], spoonG:12.5, spoon:"cucharadas soperas colmadas", cupG:200},
+  arroz:  {name:"Arroz con leche", pkg:1280, rinde:32, unit:["sobre","sobres"], spoonG:8, spoon:"cucharadas soperas"},
+};
+// waterPerPkg: litros por envase de la base (ficha). key: envase que define las tandas.
+const BASES = {
+  sabor:{name:"Leche con saborizante", key:"leche", waterPerPkg:6.5, items:[["leche",25],["sabor",20]],
+    flavors:["Vainilla","Chocolate","Flan","Malta"], vaso:"1 vaso (200 cc)"},
+  choco:{name:"Chocolatada", key:"choco", waterPerPkg:3.2, items:[["choco",45]], flavors:[], vaso:"1 vaso (200 cc)"},
+  mate:{name:"Mate cocido con leche", key:"leche", waterPerPkg:6.5, items:[["leche",25],["yerba",2],["azucar",12.5]], flavors:[], vaso:"1 vaso (200 cc)"},
+  arroz:{name:"Arroz con leche", key:"arroz", waterPerPkg:4.5, items:[["arroz",40]], flavors:["Tradicional","Caramelo"], vaso:"160 g preparado"},
+};
+const ACOMP = {
+  galletitas:{name:"Galletitas", sub:"30 g por chico", per:30, pkg:480, rinde:16, unit:["envase","envases"],
+    flavors:{"Letritas vainilla":"7 galletitas","Letritas chocolate":"7 galletitas","Frutitas durazno":"7 galletitas","Frutitas naranja":"7 galletitas","Semillitas avena y miel":"5 galletitas"}},
+  cereales:{name:"Cereales", sub:"1 taza colmada (40 g)", per:40, pkg:320, rinde:8, unit:["envase","envases"],
+    flavors:{"Anillitos con miel":"","Anillitos sabor fruta":"","Bolitas de chocolate":"","Copitas con chocolate":""}},
+  budin:{name:"Budín", sub:"1 rebanada (40 g)", per:40, pkg:320, rinde:8, unit:["budín","budines"],
+    flavors:{"Vainilla":"","Naranja":"","Dulce de leche":"","Mixto":""}},
+};
+const MENU = {1:["sabor","cereales","Leche con saborizante + cereales"],2:["mate","galletitas","Mate cocido con leche + galletitas"],
+  3:["choco","budin","Chocolatada o leche con saborizante + budín"],4:["arroz","cereales","Arroz con leche + cereales"],5:["sabor","galletitas","Leche con saborizante + galletitas"]};
+const DIAS=["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
+const state = {base:"sabor", acomp:"galletitas", baseFlavor:"", acompFlavor:"", n:50, jarra:1, calc:"justa", mode:"casera"};
+
+// ---------- Medición de uso (Google Analytics, opcional) ----------
+function track(name,params){try{if(window.gtag)window.gtag("event",name,params||{});}catch(e){}}
+// ---------- Utilidades ----------
+const fmt=(x,d=1)=>(Math.round(x*10**d)/10**d).toLocaleString("es-AR");
+const pl=(n,u)=> n===1?u[0]:u[1];
+const $=id=>document.getElementById(id);
+function waterText(L,J){
+  let full=Math.floor(L/J+1e-9), rem=L-full*J, half=0;
+  if(rem>=J/2-1e-9){half=1;rem-=J/2;}
+  const vasos=Math.round(rem/0.2*2)/2, parts=[];
+  if(full||half) parts.push(`${full?full:""}${half?(full?" y ½":"½"):""} ${full+half/2>1?"jarras":"jarra"} de ${J} L`);
+  if(vasos) parts.push(`${fmt(vasos)} ${vasos>1?"vasos":"vaso"} de 200 cc`);
+  return parts.join(" + ")||"—";
+}
+const Ltxt=L=>`${fmt(L,2)} litros`;
+function measure(id,g){
+  const i=ING[id];
+  if(state.mode==="gramos") return `${fmt(g,0)} g`;
+  // Taza estandarizada: 200 g para cualquier producto. El resto, en cucharadas según la lámina.
+  const t=Math.floor(g/200+1e-9), c=Math.round((g-t*200)/i.spoonG*2)/2, parts=[];
+  if(t) parts.push(`${t} ${t>1?"tazas":"taza"}`);
+  if(c) parts.push(`${fmt(c)} ${c===1?i.spoon.replace("cucharadas","cucharada").replace("cucharaditas","cucharadita").replace("colmadas","colmada").replace("soperas","sopera"):i.spoon}`);
+  return `${parts.join(" + ")||"una pizca"} (${fmt(g,0)} g)`;
+}
+function sugarText(g){ // azúcar: paquetes de 1 kg + tazas de 200 g
+  const full=Math.floor(g/1000+1e-9), rest=g-full*1000, t=Math.round(rest/200*2)/2;
+  return [full?`${full} ${full>1?"paquetes":"paquete"}`:"", t?`${fmt(t)} ${t>1?"tazas":"taza"}`:""].filter(Boolean).join(" + ")+` (${fmt(g,0)} g)`;
+}
+
+// ---------- Cálculo ----------
+function compute(){
+  const B=BASES[state.base], A=ACOMP[state.acomp], n=state.n, whole=state.calc==="enteros";
+  const k=Math.ceil(n/ING[B.key].rinde - 1e-9);           // envases (tandas) de la base
+  const raciones = whole ? k*ING[B.key].rinde : n;
+  const L = whole ? k*B.waterPerPkg : n*B.waterPerPkg/ING[B.key].rinde;
+  const items = B.items.map(([id,g])=>{
+    const i=ING[id];
+    if(id==="azucar"){const tot=g*raciones; return {id,name:i.name,take:Math.ceil(tot/1000-1e-9),unit:i.unit,det:`Usás ${sugarText(tot)}`,tot,partial:tot%1000>0.5};}
+    if(whole) return {id,name:i.name,take:k,unit:i.unit,det:`${k} ${pl(k,i.unit)} completos`,tot:k*i.pkg};
+    const tot=g*n, full=Math.floor(tot/i.pkg+1e-9), part=tot-full*i.pkg, take=Math.ceil(tot/i.pkg-1e-9);
+    return {id,name:i.name,take,unit:i.unit,tot,partial:part>0.5,
+      det: part>0.5 ? `${full?`${full} ${pl(full,["completo","completos"])} + `:""}del último usás ${measure(id,part)}` : `${take} ${pl(take,i.unit)} completos`};
+  });
+  const ak=Math.ceil(n/A.rinde-1e-9);
+  return {B,A,n,whole,k,raciones,L,items,ak,extraA:ak*A.rinde-n};
+}
+
+function steps(c){
+  const {B,k,L,whole,items}=c, J=state.jarra, w=`${Ltxt(L)} (${waterText(L,J)})`;
+  const q=id=>{const it=items.find(x=>x.id===id), i=ING[id]; if(whole) return `${k} ${pl(k,i.unit)}`;
+    const full=Math.floor(it.tot/i.pkg+1e-9), part=it.tot-full*i.pkg;
+    return [full?`${full} ${pl(full,i.unit)} ${pl(full,["completo","completos"])}`:"", part>0.5?`${measure(id,part)}${full?" de otro envase":""}`:""].filter(Boolean).join(" + ");};
+  const sab=state.baseFlavor?` sabor ${state.baseFlavor.toLowerCase()}`:"";
+  if(state.base==="sabor") return [
+    `Poné a hervir ${w} de agua potable en una olla limpia.`,
+    `Dejá enfriar el agua hasta la temperatura deseada y agregá ${q("leche")} de leche en polvo. Revolvé con utensilios limpios y secos hasta disolver por completo, sin grumos.`,
+    `Agregá ${q("sabor")} de saborizante${sab} y llevá a fuego hasta que se disuelva por completo.`,
+    state.baseFlavor==="Malta"?"Serví caliente.":"Serví caliente o frío.",
+    "No agregues azúcar."];
+  if(state.base==="choco") return [
+    `Colocá ${q("choco")} de chocolatada en una olla limpia.`,
+    `Agregá ${w} de agua potable, fría o caliente.`,
+    "Revolvé con utensilios limpios hasta que se disuelva por completo.",
+    "No agregues azúcar."];
+  if(state.base==="mate"){const az=items.find(x=>x.id==="azucar"); return [
+    `Poné a hervir ${w} de agua potable. Cuando hierva, retirá la olla del fuego.`,
+    `Agregá ${q("leche")} de leche en polvo y revolvé con utensilios limpios hasta disolver por completo.`,
+    `Colocá ${q("yerba")} de yerba mate en la bolsita filtro${whole&&k>1?" (una bolsita por envase)":""} y cerrala bien.`,
+    "Poné el filtro en la olla y dejalo reposar 10 minutos.",
+    "Retirá el filtro y escurrilo para dar más sabor.",
+    `Agregá ${sugarText(az.tot)} de azúcar y revolvé hasta disolver.`,
+    "Serví inmediatamente."];}
+  return [
+    `Volcá ${q("arroz")} de arroz con leche${sab} en ${w} de agua fría y revolvé. Llevá al fuego.`,
+    "Cuando rompa el hervor, cociná a fuego moderado con la olla destapada de 25 a 30 minutos, hasta lograr la consistencia deseada. Revolvé seguido.",
+    "Dejá reposar 10 minutos.",
+    "Serví caliente o dejá enfriar en la heladera."];
+}
+
+// ---------- UI ----------
+function opt(el,key,val,title,sub,after){
+  const b=document.createElement("button");b.type="button";b.className="opt";
+  b.innerHTML=`${title}<small>${sub}</small>`;b.setAttribute("aria-pressed",state[key]===val);
+  b.onclick=()=>{state[key]=val; if(after)after(); render();}; el.appendChild(b);
+}
+function chips(el,key,list,toggle){
+  el.innerHTML="";
+  list.forEach(([val,label])=>{
+    const b=document.createElement("button");b.type="button";b.className="chip";b.textContent=label;
+    b.setAttribute("aria-pressed",state[key]===val);
+    b.onclick=()=>{state[key]=(toggle&&state[key]===val)?"":val;render();}; el.appendChild(b);
+  });
+}
+function renderToday(){
+  const d=new Date().getDay(), m=MENU[d], el=$("today");
+  if(!m){el.innerHTML=`<span class="day">${DIAS[d]}</span><span class="what">Hoy no hay menú sugerido<small>Elegí libremente la base y el acompañamiento.</small></span><span></span>`;return;}
+  el.innerHTML=`<span class="day">${DIAS[d]}</span><span class="what">${m[2]}<small>Menú sugerido para hoy. La combinación es libre.</small></span><button type="button" id="useToday">Usar</button>`;
+  $("useToday").onclick=()=>{state.base=m[0];state.acomp=m[1];state.baseFlavor="";state.acompFlavor="";render();};
+}
+
+function render(){
+  const c=compute(), {B,A,n}=c;
+  $("bases").innerHTML="";
+  Object.entries(BASES).forEach(([k,b])=>opt($("bases"),"base",k,b.name,`${b.vaso} por chico`,()=>state.baseFlavor=""));
+  $("baseFlavorWrap").style.display=B.flavors.length?"":"none";
+  chips($("baseFlavor"),"baseFlavor",B.flavors.map(f=>[f,f]),true);
+  $("acomps").innerHTML="";
+  Object.entries(ACOMP).forEach(([k,a])=>opt($("acomps"),"acomp",k,a.name,a.sub,()=>state.acompFlavor=""));
+  chips($("acompFlavor"),"acompFlavor",Object.keys(A.flavors).map(f=>[f,f]),true);
+  chips($("quick"),"n",[16,32,48,64,96,128].map(v=>[v,String(v)]));
+  if(document.activeElement!==$("n")) $("n").value=n;
+  chips($("jarra"),"jarra",[[1,"Jarra de 1 litro"],[2,"Jarra de 2 litros"]]);
+  chips($("mode"),"mode",[["casera","Medidas caseras"],["gramos","Tengo balanza"]]);
+
+  const bName=B.name+(state.baseFlavor?` (${state.baseFlavor.toLowerCase()})`:"");
+  const aName=state.acompFlavor||A.name;
+  $("summary").textContent=`${bName} + ${aName.toLowerCase()} para ${n} ${n===1?"chico":"chicos"}`;
+  const extraB=c.raciones-n;
+  $("yield").textContent = c.whole
+    ? `Con ${c.k} ${pl(c.k,ING[B.key].unit)} rinde ${c.raciones} raciones${extraB?`: sobran ${extraB} para repetir`:""}.`
+    : `Preparás exactamente ${n} raciones: ${B.vaso} por chico.`;
+
+  // Depósito
+  const pick=$("pick"); pick.innerHTML=""; const lines=[];
+  c.items.forEach(it=>{
+    const li=document.createElement("li");
+    li.innerHTML=`<img src="${photo(it.id,state.baseFlavor)}" alt="" loading="lazy"><div><div class="name">${it.name}${it.id==="sabor"&&state.baseFlavor?` ${state.baseFlavor.toLowerCase()}`:""}${it.id==="arroz"&&state.baseFlavor?` ${state.baseFlavor.toLowerCase()}`:""}</div><div class="det">${it.det}</div></div><div class="qty">${it.take}<small>${pl(it.take,it.unit)}</small></div>`;
+    pick.appendChild(li); lines.push(`• ${it.name}: ${it.take} ${pl(it.take,it.unit)}`);
+  });
+  const per = state.acompFlavor && A.flavors[state.acompFlavor] ? A.flavors[state.acompFlavor] : "";
+  const tipA = state.acomp==="budin" ? "Cortá cada budín en 8 rebanadas iguales." : state.acomp==="cereales" ? "1 taza colmada (200 cc) por chico." : (per?`${per} por chico.`:"7 letritas o frutitas, o 5 semillitas por chico.");
+  const li=document.createElement("li");
+  li.innerHTML=`<img src="${photo(state.acomp,state.acompFlavor)}" alt="" loading="lazy"><div><div class="name">${aName}</div><div class="det">${tipA}${c.extraA?` Del último ${A.unit[0]} quedan ${c.extraA} ${c.extraA>1?"porciones":"porción"}: guardalas bien cerradas.`:""}</div></div><div class="qty">${c.ak}<small>${pl(c.ak,A.unit)}</small></div>`;
+  pick.appendChild(li); lines.push(`• ${aName}: ${c.ak} ${pl(c.ak,A.unit)}`);
+
+  // Agua y pasos
+  $("water").innerHTML=`<div class="big">${fmt(c.L,2)} L</div><div class="how">${waterText(c.L,state.jarra)}<span>de agua potable para ${c.raciones} raciones</span></div>`;
+  $("steps").innerHTML=steps(c).map((s,i)=>`<li><input type="checkbox" id="st${i}"><label for="st${i}">${s}</label></li>`).join("");
+  const bk=ING[B.key];
+  $("tanda").textContent = c.k>1
+    ? `¿No entra todo en una olla? Prepará por tandas: cada envase completo de ${bk.name.toLowerCase()} lleva ${fmt(B.waterPerPkg,1)} litros de agua (${waterText(B.waterPerPkg,state.jarra)}) y rinde ${bk.rinde} raciones.`
+    : `Medí el agua una vez y marcá la olla a esa altura: la próxima vez no tenés que contar jarras.`;
+  const open=c.items.filter(it=>it.partial).map(it=>it.name.toLowerCase());
+  if(c.extraA) open.push(aName.toLowerCase());
+  $("note").innerHTML = open.length ? `<strong>Te queda abierto: ${open.join(", ")}.</strong> Cerrá bien el envase (doblá la boca y asegurala con un broche o cinta), o pasá el producto a un recipiente hermético limpio y seco con tapa. Anotá el nombre y la fecha en que lo abriste, guardalo en un lugar fresco y seco, lejos del piso, la humedad y los productos de limpieza, y usalo primero la próxima vez.` : "";
+
+  // Servir
+  const serveA = state.acomp==="galletitas" ? (per?`${per} (30 g)`:"7 letritas o frutitas, o 5 semillitas (30 g)")
+    : state.acomp==="cereales" ? "1 taza tamaño desayuno (40 g)" : "1 porción: 1 rebanada (40 g)";
+  $("serve").innerHTML=`<div><div class="k">Base láctea</div><div class="v">${B.vaso}</div></div><div><div class="k">Acompañamiento</div><div class="v">${serveA}</div></div>`;
+
+  lines.unshift(`• Agua: ${fmt(c.L,2)} L (${waterText(c.L,state.jarra)})`);
+  $("wa").href="https://wa.me/?text="+encodeURIComponent(`Refrigerio ${new Date().toLocaleDateString("es-AR")} – ${n} chicos\n${bName} + ${aName}\nRetirar del depósito:\n${lines.join("\n")}`);
+  if(state.touched){clearTimeout(state.tt);state.tt=setTimeout(()=>track("calcular",{base:B.name,acompanamiento:A.name,comensales:n}),4000);}
+  state.touched=true;
+  state.copyText=`Refrigerio ${new Date().toLocaleDateString("es-AR")} – ${n} chicos\n${bName} + ${aName}\nRetirar del depósito:\n${lines.join("\n")}`;
+}
+$("n").addEventListener("input",e=>{const v=parseInt(e.target.value,10); if(v>0&&v<=2000){state.n=v;render();}});
+$("n").addEventListener("blur",()=>{$("n").value=state.n;});
+$("minus").onclick=()=>{state.n=Math.max(1,state.n-1);render();};
+$("plus").onclick=()=>{state.n=Math.min(2000,state.n+1);render();};
+$("wa").onclick=()=>{track("enviar_pedido",{via:"whatsapp"});};
+$("copy").onclick=async()=>{
+  track("enviar_pedido",{via:"copiar"});
+  try{await navigator.clipboard.writeText(state.copyText);$("ok").textContent="Copiado. Pegalo en WhatsApp para el encargado del depósito.";}
+  catch(e){$("ok").textContent="No se pudo copiar desde aquí.";}
+};
+renderToday(); render();
+if("serviceWorker" in navigator && location.protocol==="https:"){navigator.serviceWorker.register("sw.js").catch(()=>{});}
+</script>
+</body>
+</html>
