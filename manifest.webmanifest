@@ -1,7 +1,7 @@
 {
   "name": "Preparación de Refrigerios",
   "short_name": "Refrigerios",
-  "description": "Calculá qué sacar del depósito y cómo preparar el refrigerio según la cantidad de chicos.",
+  "description": "Elegí el menú, calculá las cantidades y aprendé a prepararlo.",
   "lang": "es-AR",
   "start_url": "./",
   "scope": "./",
