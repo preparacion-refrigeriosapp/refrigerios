@@ -100,9 +100,7 @@ section.card{background:var(--surface);border-radius:14px;padding:16px;display:g
 .water .how span{display:block;font-weight:400;font-size:14px;color:var(--muted)}
 ol.steps{margin:0;padding:0;list-style:none;display:grid;gap:10px}
 ol.steps li{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start}
-ol.steps input{width:22px;height:22px;margin:2px 0 0;accent-color:var(--coral)}
-ol.steps label{cursor:pointer}
-ol.steps input:checked + label{color:var(--muted);text-decoration:line-through}
+ol.steps .num{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:color-mix(in srgb,var(--c) 15%,#fff);color:var(--c);font:800 14px var(--font);margin-top:1px}
 .note{border-left:5px solid var(--orange);background:var(--orange-soft);border-radius:8px;padding:10px 12px;font-size:15px}
 .note:empty{display:none}
 .tip{border-left:5px solid var(--teal);background:var(--teal-soft);border-radius:8px;padding:10px 12px;font-size:15px}
@@ -371,7 +369,7 @@ function render(){
 
   // Agua y pasos
   $("water").innerHTML=`<div class="big">${fmt(c.L,2)} L</div><div class="how">${waterText(c.L,state.jarra)}<span>de agua potable para ${c.raciones} raciones</span></div>`;
-  $("steps").innerHTML=steps(c).map((s,i)=>`<li><input type="checkbox" id="st${i}"><label for="st${i}">${s}</label></li>`).join("");
+  $("steps").innerHTML=steps(c).map((s,i)=>`<li><span class="num">${i+1}</span><span>${s}</span></li>`).join("");
   const bk=ING[B.key];
   $("tanda").textContent = c.k>1
     ? `¿No entra todo en una olla? Prepará por tandas: cada envase completo de ${bk.name.toLowerCase()} lleva ${fmt(B.waterPerPkg,1)} litros de agua (${waterText(B.waterPerPkg,state.jarra)}) y rinde ${bk.rinde} raciones.`
