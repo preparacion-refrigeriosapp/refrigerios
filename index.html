@@ -10,6 +10,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Refrigerios">
+<meta name="application-name" content="Preparación de Refrigerios">
 <script src="config.js"></script>
 <script>
 // Carga Google Analytics solo si config.js tiene un código de medición.
@@ -40,7 +41,8 @@ body{background:var(--bg);color:var(--ink);font:17px/1.45 var(--font)}
 .brand .sn{width:170px}
 .brand .tkf{width:92px}
 .hero{max-width:560px;margin:0 auto;padding:0 16px 16px;display:grid;gap:6px}
-.hero img{width:100%;height:auto;display:block}
+.hero img{width:100%;height:auto;display:block;border-radius:8px}
+.hero .lam{font-size:13px;margin-top:-2px}
 .hero h1{text-wrap:balance;font:800 28px/1.1 var(--font);margin:0;color:var(--teal);text-transform:uppercase;letter-spacing:.01em}
 .hero p{margin:0;color:var(--muted);font-size:16px}
 .wrap{max-width:560px;margin:0 auto;padding:16px 16px 40px;display:grid;gap:16px}
@@ -114,7 +116,8 @@ footer{color:var(--muted);font-size:13px;text-align:center;display:grid;gap:4px}
   <div class="stripes"></div>
   <div class="brand"><img class="sn" src="img/logo-saber-nutrir.png" alt="SABER NUTRIR, Programa Modular de Capacitación"><img class="tkf" src="img/logo-teknofood.png" alt="Teknofood"></div>
   <div class="hero">
-    <img src="img/refrigerios.jpg" alt="Refrigerios: bases lácteas, budines, galletitas, cereales y frutas" width="1000" height="534">
+    <a class="lamina" href="img/menu-semanal-grande.jpg" target="_blank" rel="noopener"><img src="img/menu-semanal.jpg" alt="Lámina Refrigerios fortificados: referencias para la organización del menú semanal" width="1000" height="714"></a>
+    <p class="sub lam">Tocá la lámina para verla en grande.</p>
     <h1>Cómo preparar refrigerios</h1>
     <p>Elegí el menú, poné cuántos chicos comen hoy y te decimos qué sacar del depósito y cómo prepararlo.</p>
   </div>
@@ -189,7 +192,7 @@ footer{color:var(--muted);font-size:13px;text-align:center;display:grid;gap:4px}
 // ---------- Datos de las fichas técnicas Abanderado 2026 ----------
 const PHOTO = {leche:"leche",choco:"chocolatada",yerba:"yerba",azucar:"azucar",
   sabor:{"":"sab-vainilla","Vainilla":"sab-vainilla","Chocolate":"sab-chocolate","Flan":"sab-flan","Malta":"sab-malta"},
-  arroz:{"":"arroz-tradicional","Tradicional":"arroz-tradicional","Caramelo":"arroz-caramelo"},
+  arroz:{"":"arroz-tradicional","Vainilla":"arroz-tradicional","Caramelo":"arroz-caramelo"},
   galletitas:{"":"gal-letritas-vainilla","Letritas vainilla":"gal-letritas-vainilla","Letritas chocolate":"gal-letritas-chocolate","Frutitas durazno":"gal-frutitas-durazno","Frutitas naranja":"gal-frutitas-naranja","Semillitas avena y miel":"gal-semillitas"},
   cereales:{"":"cer-anillitos-miel","Anillitos con miel":"cer-anillitos-miel","Anillitos sabor fruta":"cer-anillitos-fruta","Bolitas de chocolate":"cer-bolitas","Copitas con chocolate":"cer-copitas"},
   budin:{"":"budin-vainilla","Vainilla":"budin-vainilla","Naranja":"budin-naranja","Dulce de leche":"budin-ddl","Mixto":"budin-mixto"}};
@@ -208,7 +211,7 @@ const BASES = {
     flavors:["Vainilla","Chocolate","Flan","Malta"], vaso:"1 vaso (200 cc)"},
   choco:{name:"Chocolatada", key:"choco", waterPerPkg:3.2, items:[["choco",45]], flavors:[], vaso:"1 vaso (200 cc)"},
   mate:{name:"Mate cocido con leche", key:"leche", waterPerPkg:6.5, items:[["leche",25],["yerba",2],["azucar",12.5]], flavors:[], vaso:"1 vaso (200 cc)"},
-  arroz:{name:"Arroz con leche", key:"arroz", waterPerPkg:4.5, items:[["arroz",40]], flavors:["Tradicional","Caramelo"], vaso:"160 g preparado"},
+  arroz:{name:"Arroz con leche", key:"arroz", waterPerPkg:4.5, items:[["arroz",40]], flavors:["Vainilla","Caramelo"], vaso:"160 g preparado"},
 };
 const ACOMP = {
   galletitas:{name:"Galletitas", sub:"30 g por chico", per:30, pkg:480, rinde:16, unit:["envase","envases"],
